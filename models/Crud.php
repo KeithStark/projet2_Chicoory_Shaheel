@@ -6,6 +6,11 @@ class Crud
 
     public function __construct()
     {
+        $this->connect();
+    }
+
+    private function connect()
+    {
         $host = "localhost";
         $db = "ecom2_project";
         $user = "root";
@@ -55,11 +60,12 @@ class Crud
 
             $PDOStatement->execute();
 
-            return $PDOStatement->rowCount() > 0 ? $this->connexion->lastInsertId() : false;
+            return $PDOStatement->rowCount() > 0 ? $this->connexion->lastInsertId() : null;
         } catch (PDOException $e) {
             throw new Exception("Error adding item: " . $e->getMessage());
         }
     }
+
 
     public function updateById($request, $itemData)
     {
