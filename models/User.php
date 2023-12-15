@@ -1,6 +1,6 @@
 <?php
 
-require_once('./models/Crud.php');
+require_once('Crud.php');
 
 class User extends Crud
 {
@@ -16,7 +16,7 @@ class User extends Crud
 
     public function __construct()
     {
-        parent::__construct(); // No need to pass 'user' as a parameter here, parent class constructor already handles it
+        parent::__construct('user');
     }
 
     public function getAllUsers()
@@ -31,20 +31,43 @@ class User extends Crud
 
     public function getUserByUsername($username)
     {
-        return $this->getByColumn('user', 'username', $username);
+        $stmt = $this->connexion->prepare("SELECT * FROM user WHERE username = :username");
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Fetch a single row
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function addUser($userData)
     {
+        // Hash the password before adding the user
         $userData['pwd'] = $this->hashPassword($userData['pwd']);
         return $this->add('user', $userData);
     }
 
     public function updateUserById($id, $userData)
     {
-        $userData['pwd'] = $this->hashPassword($userData['pwd']);
+        // Check if 'pwd' key exists before hashing the password
+        if (isset($userData['pwd'])) {
+            $userData['pwd'] = $this->hashPassword($userData['pwd']);
+        }
+
         return $this->updateById('user', $id, $userData);
     }
+
+    public function updateToken($id, $token)
+    {
+        $user = $this->getUserById($id);
+
+        if (!$user) {
+            return false;
+        }
+
+        return $this->updateById('user', $id, ['token' => $token]);
+    }
+
+
 
     public function deleteUserById($id)
     {

@@ -28,7 +28,8 @@ class Crud
 
     public function getAll($table)
     {
-        $PDOStatement = $this->connexion->query("SELECT * FROM $table ORDER BY id ASC");
+        $PDOStatement = $this->connexion->prepare("SELECT * FROM $table ORDER BY id ASC");
+        $PDOStatement->execute();
         return $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -37,7 +38,7 @@ class Crud
         $PDOStatement = $this->connexion->prepare("SELECT * FROM $table WHERE id = :id");
         $PDOStatement->bindParam(':id', $id, PDO::PARAM_INT);
         $PDOStatement->execute();
-        return $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
+        return $PDOStatement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getByColumn($table, $column, $value)
@@ -48,28 +49,53 @@ class Crud
         return $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function add($request, $itemData)
+    public function add($table, $data)
     {
-        try {
-            $PDOStatement = $this->connexion->prepare($request);
+        $columns = implode(", ", array_keys($data));
+        $placeholders = ":" . implode(", :", array_keys($data));
 
-            foreach ($itemData as $key => $value) {
-                $paramType = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
-                $PDOStatement->bindValue(':' . $key, $value, $paramType);
-            }
-
-            $PDOStatement->execute();
-
-            return $PDOStatement->rowCount() > 0 ? $this->connexion->lastInsertId() : null;
-        } catch (PDOException $e) {
-            throw new Exception("Error adding item: " . $e->getMessage());
+        if (isset($data['id'])) {
+            unset($data['id']);
+            $columns = implode(", ", array_keys($data));    
+            $placeholders = ":" . implode(", :", array_keys($data));
         }
+
+        $nextIdStatement = $this->connexion->query("SELECT MAX(id) + 1 as next_id FROM $table");
+        $nextId = $nextIdStatement->fetch(PDO::FETCH_ASSOC)['next_id'] ?? 1;
+
+        $nextId = $nextId ?: 1;
+
+        $columns .= ', id';
+        $placeholders .= ', :id';
+
+        $data['id'] = $nextId;
+
+        $request = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+
+        $PDOStatement = $this->connexion->prepare($request);
+
+        foreach ($data as $key => $value) {
+            $paramType = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $PDOStatement->bindValue(':' . $key, $value, $paramType);
+        }
+
+        $PDOStatement->execute();
     }
 
 
-    public function updateById($request, $itemData)
+
+    public function updateById($table, $id, $itemData)
     {
+        $columnsToUpdate = array_keys($itemData);
+        $columnsToUpdateString = implode(', ', array_map(function ($column) {
+            return $column . ' = :' . $column;
+        }, $columnsToUpdate));
+
+        $request = "UPDATE $table SET $columnsToUpdateString WHERE id = :id";
+
         $PDOStatement = $this->connexion->prepare($request);
+
+        $PDOStatement->bindValue(':id', $id, PDO::PARAM_INT);
 
         foreach ($itemData as $key => $value) {
             $paramType = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
@@ -79,19 +105,15 @@ class Crud
         $PDOStatement->execute();
     }
 
+
     public function deleteById($table, $id)
     {
         try {
-            $item = $this->getById($table, $id);
+            $PDOStatement = $this->connexion->prepare("DELETE FROM $table WHERE id = :id");
+            $PDOStatement->bindParam(':id', $id, PDO::PARAM_INT);
+            $PDOStatement->execute();
 
-            if ($item) {
-                $PDOStatement = $this->connexion->prepare("DELETE FROM $table WHERE id = :id");
-                $PDOStatement->bindParam(':id', $id, PDO::PARAM_INT);
-                $PDOStatement->execute();
-                return $PDOStatement->rowCount() > 0;
-            } else {
-                return false;
-            }
+            return $PDOStatement->rowCount() > 0;
         } catch (PDOException $e) {
             throw new Exception("Error deleting item: " . $e->getMessage());
         }

@@ -47,6 +47,15 @@ CREATE TABLE `address` (
 -- --------------------------------------------------------
 
 --
+-- Insertion dans la table `address`
+--
+INSERT INTO `address`(`id`, `street_name`, `street_nb`, `city`, `province`, `zipcode`, `country`) 
+VALUES (1,'def',132,'def','def','def','def');
+
+-- ------------------------------------------------------
+
+
+--
 -- Structure de la table `order_has_product`
 --
 
@@ -75,6 +84,15 @@ CREATE TABLE `product` (
 -- --------------------------------------------------------
 
 --
+-- Insertion dans la table `product`
+--
+INSERT INTO `product` (`id`, `name`, `qtty`, `price`, `url_img`, `description`) VALUES
+(1, 'product1', 10, '10.00','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_i3boG1_3rwjsf41hDlE8NgrfwoxRbtPR5A&usqp=CAU','lorem ispum dolor'),
+(2,'product2', 10, '25.99','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfhIXQ8iOiuvyYg5Isf2YgvMRpqS_U4ILtwg&usqp=CAU','lorem isum dolor');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `role`
 --
 
@@ -83,6 +101,17 @@ CREATE TABLE `role` (
   `name` varchar(40) DEFAULT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Insertion dans la table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `description`) VALUES
+(1, 'superadmin', 'sadmin'),
+(2, 'admin', 'admin'),
+(3, 'client', 'client');
 
 -- --------------------------------------------------------
 
@@ -103,6 +132,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
+
+--
+-- Insertion dans la table `user`
+--
+
+INSERT INTO `user` (`id`, `token`, `username`, `fname`, `lname`, `pwd`, `billing_address_id`, `shipping_address_id`, `role_id`) VALUES
+(1, 'a43c1a7d5d9545d0429acedb39e78595770b98cd6a71457c0536065891ce359fcc1ba002200d85ce48664adaf1e2f5c1628663f762704d9e18abac1070a9a17d', 'SupAdmin', 'SupAdmin', 'SupAdmin', '$2y$10$GiQLjhDY1iIUFjzxaL5JO.7Xz.F433JVSOKV7mBF6/XiPjOWgFoJa', 1, 1, 1),
+(2, 'a43c1a7d5d9545d0429acedb39e78595770b98cd6a71457c0536065891ce359fcc1ba002200d85ce48664adaf1e2f5c1628663f762704d9e18abac1070a9a17d', 'Admin', 'Admin', 'Admin', '$2y$10$GiQLjhDY1iIUFjzxaL5JO.7Xz.F433JVSOKV7mBF6/XiPjOWgFoJa', 1, 1, 2),
+(3, 'a43c1a7d5d9545d0429acedb39e78595770b98cd6a71457c0536065891ce359fcc1ba002200d85ce48664adaf1e2f5c1628663f762704d9e18abac1070a9a17d', 'Client', 'Client', 'Client', '$2y$10$GiQLjhDY1iIUFjzxaL5JO.7Xz.F433JVSOKV7mBF6/XiPjOWgFoJa', 1, 1, 3);
+
+-- ------------------------------------------------------
 
 --
 -- Structure de la table `user_order`

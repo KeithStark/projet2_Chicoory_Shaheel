@@ -1,6 +1,6 @@
 <?php
 
-require_once('./models/Crud.php');
+require_once('Crud.php');
 
 class Address extends Crud
 {
@@ -14,8 +14,9 @@ class Address extends Crud
 
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct('address');
     }
+
 
     public function getAllAddresses()
     {
@@ -27,6 +28,11 @@ class Address extends Crud
         return $this->getById('address', $id);
     }
 
+    public function getAddressByStreetAndNumber($street, $streetNumber)
+    {
+        return $this->getByColumn('address', 'street_name', $street);
+    }
+
     public function addAddress($addressData)
     {
         return $this->add('address', $addressData);
@@ -34,7 +40,7 @@ class Address extends Crud
 
     public function updateAddressById($id, $addressData)
     {
-        return $this->updateById('address', $id, $addressData);
+        return $this->updateById($id, $addressData);
     }
 
     public function deleteAddressById($id)

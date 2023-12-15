@@ -1,0 +1,50 @@
+/* Styling the body */
+body {
+    margin: 0;
+    background: linear-gradient(to right bottom, rgb(240, 236, 238), rgb(124, 157, 167), rgb(196, 128, 138));
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Style for the product container */
+.product-container {
+    padding: 50px 0;
+}
+
+/* Style for product cards */
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}   
+
+/* Styling the card title */
+.card-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling the card text (price, etc.) */
+.card-text {
+    color: #666;
+}
+
+/* Styling the Add to Cart button */
+.btn-primary {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-primary:hover {
+    background-color: #138496;
+    border-color: #138496;
+}
+
+/* Style for the container of the product cards */
+.product-container .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

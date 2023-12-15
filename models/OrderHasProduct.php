@@ -1,6 +1,6 @@
 <?php
 
-require_once('./models/Crud.php');
+require_once('Crud.php');
 
 class OrderHasProduct extends Crud
 {
