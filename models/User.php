@@ -1,6 +1,7 @@
 <?php
 
 require_once('Crud.php');
+require_once('Address.php');
 
 class User extends Crud
 {
@@ -26,7 +27,26 @@ class User extends Crud
 
     public function getUserById($id)
     {
-        return $this->getById('user', $id);
+        $user = $this->getById('user', $id);
+
+        if ($user) {
+            // Fetch billing address
+            $billingAddress = $this->getAddressById($user['billing_address_id']);
+            // Fetch shipping address
+            $shippingAddress = $this->getAddressById($user['shipping_address_id']);
+
+            $user['billing_address'] = $billingAddress;
+            $user['shipping_address'] = $shippingAddress;
+        }
+
+        return $user;
+    }
+
+    // Retrieve address by ID using Address model
+    public function getAddressById($id)
+    {
+        $addressModel = new Address();
+        return $addressModel->getAddressById($id);
     }
 
     public function getUserByUsername($username)
@@ -39,16 +59,25 @@ class User extends Crud
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    //getUserRoleID
+    public function getUserRoleID($id)
+    {
+        $stmt = $this->connexion->prepare("SELECT role_id FROM user WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Fetch a single row
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function addUser($userData)
     {
-        // Hash the password before adding the user
         $userData['pwd'] = $this->hashPassword($userData['pwd']);
         return $this->add('user', $userData);
     }
 
     public function updateUserById($id, $userData)
     {
-        // Check if 'pwd' key exists before hashing the password
         if (isset($userData['pwd'])) {
             $userData['pwd'] = $this->hashPassword($userData['pwd']);
         }
@@ -71,8 +100,6 @@ class User extends Crud
 
         return $this->updateById('user', $id, ['token' => $token]);
     }
-
-
 
     public function deleteUserById($id)
     {

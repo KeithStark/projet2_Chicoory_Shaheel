@@ -1,6 +1,5 @@
 <?php
 include "./includes/Header.php";
-include "../models/User.php";
 
 $userModel = new User();
 $users = $userModel->getAllUsers();
@@ -15,11 +14,6 @@ $users = $userModel->getAllUsers();
                         <h3 class="mb-3" style="margin-top: 2%;">Manage Users</h3>
                     </center>
                     <hr>
-                    <div class="mb-3">
-                        <center>
-                            <a href="AddUser.php" class="btn btn-success">Add new User</a>
-                        </center>
-                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -40,7 +34,7 @@ $users = $userModel->getAllUsers();
                                     <td><?php echo $user['lname']; ?></td>
                                     <td><?php echo $userModel->getUserRole($user['id']); ?></td>
                                     <td>
-                                        <a href="./ModifyUser.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">
+                                        <a href="editUser.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
                                         <a href="./DeleteUser.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">
@@ -57,4 +51,5 @@ $users = $userModel->getAllUsers();
     </section>
 </main>
 </body>
+
 </html>

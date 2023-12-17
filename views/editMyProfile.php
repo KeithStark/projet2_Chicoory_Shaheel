@@ -1,7 +1,5 @@
 <?php
 include "./includes/Header.php";
-include "../models/User.php";
-include "../models/Address.php";
 require_once('../controllers/sessions.php');
 
 // Fetch user details and address based on the session

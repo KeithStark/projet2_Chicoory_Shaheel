@@ -1,4 +1,6 @@
-<?php include "./includes/Header.php"; ?>
+<?php include "./includes/Header.php";
+require_once('../controllers/sessions.php');
+?>
 
 <main class="index-page">
     <!-- Hero Section -->

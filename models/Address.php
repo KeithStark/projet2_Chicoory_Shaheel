@@ -25,7 +25,7 @@ class Address extends Crud
     public function getAddressById($id)
     {
         return $this->getById('address', $id);
-    }
+    }    
 
     public function getAddressByStreetAndNumber($street, $streetNumber)
     {

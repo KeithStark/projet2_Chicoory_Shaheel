@@ -3,7 +3,7 @@
 
 <main>
     <!-- Products Section -->
-    <section class="product-container">
+    <section class="product-container" style="margin-top: 2%;">
         <div class="container">
             <div class="row">
                 <?php
