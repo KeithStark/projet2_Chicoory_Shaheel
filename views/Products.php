@@ -20,10 +20,7 @@
                                 <p class="card-text">Price: $<?= $product['price'] ?></p>
                                 <p class="card-text">Quantity: <?= $product['qtty'] ?></p>
                                 <p class="card-text"><?= $product['description'] ?></p>
-                                <!-- Add more product details if needed -->
-
-                                <!-- Example: Add to Cart Button -->
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                <center><a href="ProductDetails.php?id=<?= $product['id'] ?>" class="btn btn-warning">View Product</a></center>
                             </div>
                         </div>
                     </div>

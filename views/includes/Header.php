@@ -29,7 +29,7 @@
                     <a class="nav-link active" href="Products.php"><i class="bi bi-shop"></i> Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="myProfile.php"><i class="bi bi-person-badge"></i> My Profile</a>
+                    <a class="nav-link active" href="MyProfile.php"><i class="bi bi-person-badge"></i> My Profile</a>
                 </li>
                 <li class="nav-item">
                     <a href="myCart.php" class="btn btn-primary">
@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="ManageProducts.php"><i class="bi bi-basket-fill"></i> Manage Products</a>
                         </li>
-                        <li><a class="dropdown-item" href="manageUsers.php"><i class="bi bi-people"></i> Users</a></li>
+                        <li><a class="dropdown-item" href="ManageUsers.php"><i class="bi bi-people"></i> Users</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

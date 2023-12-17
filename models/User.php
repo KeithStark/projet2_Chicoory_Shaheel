@@ -56,6 +56,11 @@ class User extends Crud
         return $this->updateById('user', $id, $userData);
     }
 
+    public function updatePassword($id, $hashedPassword)
+    {
+        return $this->updateById('user', $id, ['pwd' => $hashedPassword]);
+    }
+
     public function updateToken($id, $token)
     {
         $user = $this->getUserById($id);

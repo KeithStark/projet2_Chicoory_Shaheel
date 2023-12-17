@@ -9,7 +9,6 @@ class AuthController
     public function login($username, $password)
     {
         $userModel = new User();
-
         $user = $userModel->getUserByUsername($username);
 
         if (!$user) {
@@ -33,16 +32,12 @@ class AuthController
     {
         $userModel = new User();
 
-        // Check if the username already exists
         $existingUser = $userModel->getUserByUsername($data['username']);
         if ($existingUser) {
             return ['success' => false, 'message' => 'Username already exists.'];
         }
-
-        // Default address id is 1
         $defaultAddressId = 1;
 
-        // User data for insertion
         $userData = [
             'token' => bin2hex(random_bytes(64)),
             'username' => $data['username'],
@@ -51,11 +46,17 @@ class AuthController
             'pwd' => password_hash($data['password'], PASSWORD_BCRYPT),
             'billing_address_id' => $defaultAddressId,
             'shipping_address_id' => $defaultAddressId,
-            'role_id' => 3, // client role
+            'role_id' => 3,
         ];
 
         $userModel->addUser($userData);
 
         return ['success' => true];
+    }
+
+    //La fonction de deconnexion
+    public function logout()
+    {
+        SessionManager::destroySession();
     }
 }

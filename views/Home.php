@@ -1,4 +1,6 @@
-<?php include "./includes/Header.php"; ?>
+<?php
+include "./includes/Header.php";
+?>
 
 <main>
     <!-- Hero Section -->

@@ -1,5 +1,6 @@
 <?php
 require_once('../controllers/AuthController.php');
+require_once('../controllers/sessions.php');
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,12 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $authController->login($_POST['username'], $_POST['password']);
 
     if ($result['success']) {
+        SessionManager::setSessionData('user_id', $result['user_id']);
         header("Location: ./Home.php");
         exit();
     } else {
         $errorMessage = $result['message'];
     }
 }
+
+?>
 
 ?>
 

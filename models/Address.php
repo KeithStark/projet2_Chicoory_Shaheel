@@ -14,9 +14,8 @@ class Address extends Crud
 
     public function __construct()
     {
-        parent::__construct('address');
+        parent::__construct();
     }
-
 
     public function getAllAddresses()
     {
@@ -40,7 +39,7 @@ class Address extends Crud
 
     public function updateAddressById($id, $addressData)
     {
-        return $this->updateById($id, $addressData);
+        return $this->updateById('address', $id, $addressData);
     }
 
     public function deleteAddressById($id)
