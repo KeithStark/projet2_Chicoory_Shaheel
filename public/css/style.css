@@ -1,4 +1,8 @@
-/* Styling the body */
+/* Styling the body for the index page */
+body.index-page {
+    background: linear-gradient(to right bottom, rgb(240, 236, 238), rgb(124, 157, 167), rgb(196, 128, 138));
+}
+
 body {
     margin: 0;
     background: linear-gradient(to right bottom, rgb(240, 236, 238), rgb(124, 157, 167), rgb(196, 128, 138));
@@ -6,45 +10,90 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-/* Style for the product container */
-.product-container {
-    padding: 50px 0;
-}
-
-/* Style for product cards */
-.card {
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}   
-
-/* Styling the card title */
-.card-title {
-    font-size: 1.5rem;
+/* Styling the banner section */
+.banner {
+    background-color: #fff;
+    padding: 2px;
+    text-align: center;
     color: #333;
-    margin-bottom: 10px;
 }
 
-/* Styling the card text (price, etc.) */
-.card-text {
-    color: #666;
+.banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-/* Styling the Add to Cart button */
-.btn-primary {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
+.banner p {
+    font-size: 1.2rem;
 }
 
-.btn-primary:hover {
-    background-color: #138496;
-    border-color: #138496;
+/* Styling the welcome image section */
+.welcomeImg {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-/* Style for the container of the product cards */
-.product-container .container {
-    max-width: 1200px;
-    margin: 0 auto;
+.welcomeImg img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling the quotes section */
+.quotes {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.quotes p {
+    font-size: 1.3rem;
+}
+
+/* Styling the card container */
+.cardcontainer {
+    padding: 80px 0;
+}
+
+/* Styling the card title for index page */
+.cardcontainer .card-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+/* Styling the card text for index page */
+.cardcontainer .card-text {
+    font-size: 1.1rem;
+}
+
+/* Styling the Add to Cart button for index page */
+.cardcontainer .btn-primary {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.cardcontainer .btn-primary:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Additional styling for responsiveness */
+@media (max-width: 768px) {
+    .banner h2 {
+        font-size: 2rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    .quotes p {
+        font-size: 1.1rem;
+    }
+
+    .cardcontainer .card-title {
+        font-size: 1.6rem;
+    }
+
+    .cardcontainer .card-text {
+        font-size: 1rem;
+    }
 }

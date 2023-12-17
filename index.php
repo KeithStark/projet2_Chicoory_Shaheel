@@ -30,7 +30,7 @@
         </nav>
     </header>
 
-<body>
+<body class="index-page">
     <main>
         <!-- Hero Section -->
         <section class="banner">
