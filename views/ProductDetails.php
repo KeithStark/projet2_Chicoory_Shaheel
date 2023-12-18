@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
         $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
         $cartController->addToCart($productId, $quantity);
-        echo "<script>alert('Product has been added to the cart!');</script>";
     }
 } else {
     header("Location: products.php");

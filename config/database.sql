@@ -87,8 +87,14 @@ CREATE TABLE `product` (
 -- Insertion dans la table `product`
 --
 INSERT INTO `product` (`id`, `name`, `qtty`, `price`, `url_img`, `description`) VALUES
-(1, 'product1', 10, '10.00','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_i3boG1_3rwjsf41hDlE8NgrfwoxRbtPR5A&usqp=CAU','lorem ispum dolor'),
-(2,'product2', 10, '25.99','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfhIXQ8iOiuvyYg5Isf2YgvMRpqS_U4ILtwg&usqp=CAU','lorem isum dolor');
+(1, 'Diablo', 8, '109.00','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_i3boG1_3rwjsf41hDlE8NgrfwoxRbtPR5A&usqp=CAU','lorem ispum dolor'),
+(2,'Sublimo', 12, '99.99','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfhIXQ8iOiuvyYg5Isf2YgvMRpqS_U4ILtwg&usqp=CAU','lorem isum dolor'),
+(3, 'Indestructible', 7, '79.99','https://images.squarespace-cdn.com/content/v1/61b244bd3419a10c6b5ea8d7/1663178127779-BJOHWP6SSPDHV85NZBSC/Long-anticipated+Nike+x+UCLA+shoe+now+available+at+UCLA+Store.jpg','lorem ispum dolor'),
+(4,'Espresso', 5, '89.99','https://static.nike.com/a/images/f_auto,cs_srgb/w_960,c_limit/e59273d2-3575-4c07-b302-a97f69df4b44/nike-just-do-it.jpg','lorem isum dolor'),
+(5, 'Rapidos', 8, '69.00','https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e80494bb-5549-4986-9c0a-d7a2bf112949/air-jordan-3-retro-mens-shoes-5M3ZlK.png','lorem ispum dolor'),
+(6,'Pegasus', 11, '89.99','https://fanatics.frgimages.com/basketball-essentials/mens-nike-gray-air-zoom-gt-jump-2-shoe_ss5_p-5347834+u-diocrvlzrqizxpdzna4l+v-u1ljyh1frsvz1fiujg7z.jpg?_hv=2&w=340','lorem isum dolor'),
+(7, 'Hercules', 13, '99.00','https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_3.0/h_300,c_limit/bb9be77e-e808-4d58-88db-5ad331c0b4ac/sabrina-1-west-coast-roots-basketball-shoes-f8jr2H.png','lorem ispum dolor'),
+(8,'Athena', 7, '69.99','https://images.footlocker.com/content/dam/final/FootLockerInc/site/new-arrivals/new-arrival-6up-J9405601.jpg','lorem isum dolor');
 
 -- --------------------------------------------------------
 
