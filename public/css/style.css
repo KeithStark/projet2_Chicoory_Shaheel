@@ -97,3 +97,59 @@ body {
         font-size: 1rem;
     }
 }
+
+/* Styling for the MyCart page */
+.cart-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.cart-container h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cart-container .row-cols-md-2 .card {
+    margin-bottom: 20px;
+}
+
+.cart-container .card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    max-width: 300px;
+    /* Adjust the max-width to your preference */
+}
+
+.cart-container .card:hover {
+    transform: scale(1.05);
+}
+
+.cart-container .card-img-top {
+    height: 150px;
+    /* Adjust the height to your preference */
+    object-fit: cover;
+}
+
+.cart-container .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.cart-container .card-text {
+    font-size: 1rem;
+}
+
+.cart-container .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.cart-container .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}

@@ -1,11 +1,20 @@
 <?php
 require_once('../models/User.php');
 require_once('../controllers/sessions.php');
+require_once('../controllers/CartController.php');
 
-// Check if the user is logged in
 SessionManager::startSession();
 $user_id = SessionManager::getSessionData('user_id');
 $userModel = new User();
+
+$cartController = new CartController();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
+    $productId = $_POST['productId'];
+    $cartController->addToCart($productId);
+}
+
+$cartQuantity = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +65,8 @@ $userModel = new User();
                             <a class="nav-link active" href="Products.php"><i class="bi bi-shop"></i> Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a href="myCart.php" class="btn btn-primary">
-                                <i class="bi bi-cart4"></i> <span class="badge text-bg-danger">
-                                </span>
+                            <a href="MyCart.php" class="btn btn-primary">
+                                <i class="bi bi-cart4"></i> <span class="badge text-bg-danger"><?= $cartQuantity ?></span>
                             </a>
                         </li>
                 <?php

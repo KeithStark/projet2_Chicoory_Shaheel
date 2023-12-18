@@ -1,5 +1,4 @@
 <?php include "./includes/Header.php"; ?>
-<?php include "../models/Product.php"; ?>
 
 <main>
     <!-- Products Section -->

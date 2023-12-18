@@ -61,6 +61,8 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <center>
                                     <div class="mb-3">
+
+                                        <a href="./ManageProducts.php" class="btn btn-secondary">Cancel</a>
                                         <input type="submit" name="save" value="Modify Product" class="btn btn-primary">
                                     </div>
                                 </center>

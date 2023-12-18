@@ -3,6 +3,14 @@ include "./includes/Header.php";
 include "../models/Product.php";
 
 $productModel = new Product();
+
+if (isset($_GET['delete_id'])) {
+    $deleteId = $_GET['delete_id'];
+    $productModel->deleteProductById($deleteId);
+    header("Location: ManageProducts.php");
+    exit();
+}
+
 $products = $productModel->getAllProducts();
 ?>
 
@@ -45,7 +53,7 @@ $products = $productModel->getAllProducts();
                                         <a href="./ModifyProduct.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                                        <a href="./DeleteProduct.php?id=<?php echo $product['id']; ?>" class="btn btn-danger">
+                                        <a href="./ManageProducts.php?delete_id=<?php echo $product['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">
                                             <i class="bi bi-trash3-fill"></i>
                                         </a>
                                     </td>
