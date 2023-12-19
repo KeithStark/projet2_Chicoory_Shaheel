@@ -1,6 +1,5 @@
 <?php
 include "./includes/Header.php";
-include "../models/Product.php";
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -61,7 +60,6 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <center>
                                     <div class="mb-3">
-
                                         <a href="./ManageProducts.php" class="btn btn-secondary">Cancel</a>
                                         <input type="submit" name="save" value="Modify Product" class="btn btn-primary">
                                     </div>

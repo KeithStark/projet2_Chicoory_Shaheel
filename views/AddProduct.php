@@ -1,6 +1,5 @@
 <?php
 include "./includes/Header.php";
-include "../models/Product.php";
 
 // Assuming you have a function to handle the form submission, you can add it here.
 // For example:
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["save"])) {
                 <div class="row">
                     <div class="col-md-12">
                         <center>
-                        <h3 class="mb-3" style="margin-top: 2%;">Add New Product</h3>
+                            <h3 class="mb-3" style="margin-top: 2%;">Add New Product</h3>
                         </center>
                         <hr>
                         <div class="registerfrm">
@@ -56,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["save"])) {
                                 </div>
                                 <center>
                                     <div class="mb-3">
+                                        <a href="./ManageProducts.php" class="btn btn-secondary">Cancel</a>
                                         <input type="submit" name="save" value="Add Product" class="btn btn-success">
                                     </div>
                                 </center>
