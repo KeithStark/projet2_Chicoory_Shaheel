@@ -2,35 +2,41 @@
 include "./includes/Header.php";
 require_once('../controllers/sessions.php');
 
-// Ensure that the user ID is provided in the URL
 if (!isset($_GET['id'])) {
     header("Location: ./manageUsers.php");
     exit();
 }
 
-// Fetch user details based on the provided user ID
 $userModel = new User();
 $addressModel = new Address();
 $user = $userModel->getUserById($_GET['id']);
 
-// Check if the user exists
 if (!$user) {
     header("Location: ./manageUsers.php");
     exit();
 }
 
-// Handle form submission for updating user details
+$currentUserId = $_SESSION['user_id'] ?? null;
+$currentRole = $userModel->getUserRole($currentUserId);
+
+$canModifyRoles = false;
+if ($currentRole == 1 || ($currentRole == 2 && $user['role_id'] == 3)) {
+    $canModifyRoles = true;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve updated user information from the form
     $updatedUser = [
         'fname' => $_POST['fname'],
         'lname' => $_POST['lname'],
         'username' => $_POST['username'],
     ];
 
-    $userModel->updateUserById($user['id'], $updatedUser);
+    if ($canModifyRoles) {
+        $updatedUser['role_id'] = $_POST['role'];
+    }
 
-    header("Location: ./MyProfile.php");
+    $userModel->updateUserById($user['id'], $updatedUser);
+    header("Location: ./ManageUsers.php");
     exit();
 }
 ?>
