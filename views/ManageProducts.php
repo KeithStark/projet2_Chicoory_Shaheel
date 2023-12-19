@@ -1,6 +1,5 @@
 <?php
 include "./includes/Header.php";
-include "../models/Product.php";
 
 $productModel = new Product();
 
