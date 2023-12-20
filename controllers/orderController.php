@@ -11,15 +11,12 @@ class OrderController
         $userOrderModel = new UserOrder();
         $cartController = new CartController();
 
-        // Calculate the total cost of the cart items
         $total = array_sum(array_map(function ($item) {
             return $item['price'] * $item['quantity'];
         }, $cartItems));
 
-        // Generate a unique order reference
         $orderRef = 'ORD' . date('YmdHis') . mt_rand(1000, 9999);
 
-        // Prepare the user order data
         $userOrderData = [
             'ref' => $orderRef,
             'order_date' => date('Y-m-d'),
@@ -31,7 +28,20 @@ class OrderController
             $orderId = $userOrderModel->addUserOrder($userOrderData);
 
             if ($orderId > 0) {
-                return $orderId; // Order created successfully
+                $orderHasProductModel = new OrderHasProduct();
+
+                foreach ($cartItems as $item) {
+                    $orderProductData = [
+                        'user_order_id' => $orderId,
+                        'product_id' => $item['id'],
+                        'qtty' => $item['quantity'],
+                        'price' => $item['price']
+                    ];
+
+                    $orderHasProductModel->addOrderHasProduct($orderProductData);
+                }
+
+                return $orderId;
             } else {
                 return "Error creating order: unable to add order to database.";
             }

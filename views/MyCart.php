@@ -11,6 +11,7 @@ if (isset($_POST['emptyCart'])) {
     exit();
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateCart'])) {
     foreach ($_POST['quantity'] as $productId => $quantity) {
         $quantity = max(1, (int)$quantity);
@@ -23,6 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateCart'])) {
 $total = array_sum(array_map(function ($item) {
     return $item['price'] * $item['quantity'];
 }, $cartItems));
+
+//delete from cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteItem'])) {
+    $itemId = $_POST['deleteItem'];
+    $cartController->deleteFromCart($itemId);
+    header("Location: MyCart.php");
+    exit();
+}
 ?>
 
 <main>
@@ -56,7 +65,10 @@ $total = array_sum(array_map(function ($item) {
                                         <label for="quantity<?= $item['id'] ?>">Quantity:</label>
                                         <input type="number" name="quantity[<?= $item['id'] ?>]" id="quantity<?= $item['id'] ?>" value="<?= $item['quantity'] ?>" min="1" max="<?= $item['qtty'] ?>">
                                         <p class="card-text">Total: $<?= $item['price'] * $item['quantity'] ?></p>
-                                        <a href="#" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                                        <form action="MyCart.php" method="post">
+                                            <input type="hidden" name="deleteItem" value="<?php echo $item['id']; ?>">
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

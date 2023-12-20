@@ -30,13 +30,13 @@ if (isset($_GET['id'])) {
                 <div class="col-md-6">
                     <h3><?= $product['name'] ?></h3>
                     <p><strong>Price:</strong> $<?= $product['price'] ?></p>
+                    <p><strong>Quantity:</strong> <?= $product['qtty'] ?></p>
                     <p><strong>Description:</strong> <?= $product['description'] ?></p>
+
 
                     <!-- Add to Cart Button -->
                     <form action="" method="post">
                         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="<?php echo $product['qtty'] ?>">
                         <input type="submit" name="addToCart" value="Add to Cart" class="btn btn-success">
                     </form>
 
