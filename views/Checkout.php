@@ -2,6 +2,7 @@
 include "./includes/Header.php";
 require_once "../controllers/CartController.php";
 require_once "../controllers/orderController.php";
+require_once "../controllers/discountController.php";
 require_once "../models/User.php";
 require_once "../models/Address.php";
 
@@ -10,6 +11,9 @@ $cartItems = $cartController->getCartItems();
 
 $userModel = new User();
 $addressModel = new Address();
+
+$discountController = new DiscountController();
+$discountApplied = false;
 
 $user_id = SessionManager::getSessionData('user_id');
 $user = $userModel->getUserById($user_id);
@@ -31,6 +35,12 @@ if (isset($_POST['payer'])) {
     } else {
         echo "<p>Error: " . $result . "</p>";
     }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyDiscount'])) {
+    $discountCode = $_POST['discountCode'];
+    $total = $discountController->applyDiscount($discountCode, $total);
+    $discountApplied = true;
 }
 ?>
 
@@ -154,6 +164,23 @@ if (isset($_POST['payer'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><b>Order Summary</b></h5>
+                            <!-- Add the discount code field here -->
+                            <div class="mb-3">
+                                <form action="Checkout.php" method="post">
+                                    <label for="discountCode" class="form-label" style="color: red;">Discount Code</label>
+                                    <div class="row">
+                                        <div class="col-sm-8 col-md-6 col-lg-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="discountCode" name="discountCode" placeholder="Enter code (optional)">
+                                                <button type="submit" name="applyDiscount" class="btn btn-primary" style="margin-left: 5%;">Apply</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php if ($discountApplied) : ?>
+                                        <small class="text-success" style="color: blue;"><b>Discount applied!</b></small>
+                                    <?php endif; ?>
+                                </form>
+                            </div>
                             <br>
                             <ul class="list-group">
                                 <?php foreach ($cartItems as $item) { ?>

@@ -214,3 +214,74 @@ h5 {
     color: #fff;
     /* Ensures text on the button is readable */
 }
+
+/* Navbar Styling */
+.navbar {
+    background-color: #333;
+    /* Dark background */
+    padding: 0.5rem 1rem;
+    /* Adjust spacing */
+}
+
+.navbar-brand {
+    color: #a76b6b;
+    /* Light text color */
+    font-size: 1.5rem;
+    /* Larger brand name */
+}
+
+.navbar-brand .firstWord {
+    color: #e0a800;
+    /* Highlight color for the first part of the brand */
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #0e0d0d;
+    /* Light text color for nav items */
+    margin-right: 0.5rem;
+    /* Spacing between nav items */
+}
+
+.navbar-nav .nav-item .btn {
+    margin-right: 1.5rem;
+    /* Spacing between buttons */
+}
+
+.navbar-toggler {
+    border-color: #fff;
+    /* Visible toggle button */
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    background-color: #444;
+    /* Slightly lighter than the navbar */
+}
+
+.dropdown-item {
+    color: #fff;
+    /* Light text color for dropdown items */
+}
+
+.dropdown-item:hover {
+    background-color: #555;
+    /* Slightly darker on hover */
+}
+
+/* Badge and icon styling */
+.badge {
+    background-color: #e0a800;
+    /* Highlight color for the badge */
+}
+
+.bi {
+    margin-right: 0.3rem;
+    /* Spacing before the icon text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+    }
+}

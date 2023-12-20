@@ -33,7 +33,6 @@ $orders = $userOrderModel->getAllUserOrders();
                                 <th scope="col">Date Order</th>
                                 <th scope="col">Products ==> Quantity</th>
                                 <th scope="col">Total Price</th>
-                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,11 +59,6 @@ $orders = $userOrderModel->getAllUserOrders();
                                         } ?>
                                     </td>
                                     <td><?php echo $order['total']; ?></td>
-                                    <td>
-                                        <a href="./deleteOrder.php?id=<?php echo $order['id']; ?>" class="btn btn-danger">
-                                            <i class="bi bi-trash3-fill"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
