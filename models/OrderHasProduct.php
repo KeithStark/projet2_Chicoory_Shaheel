@@ -4,6 +4,7 @@ require_once('Crud.php');
 
 class OrderHasProduct extends Crud
 {
+    protected $id;
     protected $user_order_id;
     protected $product_id;
     protected $qtty;
@@ -26,7 +27,18 @@ class OrderHasProduct extends Crud
 
     public function addOrderHasProduct($orderHasProductData)
     {
-        return $this->add('order_has_product', $orderHasProductData);
+        $columns = implode(", ", array_keys($orderHasProductData));
+        $values = ":" . implode(", :", array_keys($orderHasProductData));
+
+        $sql = "INSERT INTO order_has_product ($columns) VALUES ($values)";
+        $stmt = $this->connexion->prepare($sql);
+
+        foreach ($orderHasProductData as $key => $value) {
+            $paramType = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue(":$key", $value, $paramType);
+        }
+
+        return $stmt->execute();
     }
 
     public function updateOrderHasProduct($orderId, $productId, $orderHasProductData)
@@ -53,7 +65,6 @@ class OrderHasProduct extends Crud
         return $this->execute($sql, $conditions);
     }
 
-    // Helper method to execute queries
     private function execute($sql, $params)
     {
         $PDOStatement = $this->connexion->prepare($sql);

@@ -1,6 +1,7 @@
 <?php
 include "./includes/Header.php";
 require_once "../controllers/CartController.php";
+require_once "../controllers/orderController.php";
 require_once "../models/User.php";
 require_once "../models/Address.php";
 
@@ -19,6 +20,11 @@ $shippingAddress = $addressModel->getAddressById($user['shipping_address_id']);
 $total = array_sum(array_map(function ($item) {
     return $item['price'] * $item['quantity'];
 }, $cartItems));
+
+if (isset($_POST['payer'])) {
+    $orderController = new orderController();
+    $orderController->createOrder($user_id, $cartItems);
+}
 ?>
 
 <main>
@@ -87,9 +93,10 @@ $total = array_sum(array_map(function ($item) {
             <div class="row mt-3">
                 <div class="col-md-12">
                     <center>
-                        <button class="btn btn-info" name="payer"><i class="bi bi-coin"></i> <b>Pay
-                                Now</b></button><br><br>
-                        <div id="paypal-payment-button" name="payer" style="width: 300px;"></div>
+                        <form action="" method="post">
+                            <button class="btn btn-info" name="payer" type="submit"><i class="bi bi-coin"></i> <b>Pay Now</b></button><br><br>
+                            <div id="paypal-payment-button" name="payer" style="width: 300px;"></div>
+                        </form>
                     </center>
                 </div>
             </div>

@@ -50,7 +50,7 @@ CREATE TABLE `address` (
 -- Insertion dans la table `address`
 --
 INSERT INTO `address`(`id`, `street_name`, `street_nb`, `city`, `province`, `zipcode`, `country`) 
-VALUES (1,'def',132,'def','def','def','def');
+VALUES (1,'Hochelaga',3030,'Montreal','Quebec','H2K 3R5','Canada');
 
 -- ------------------------------------------------------
 

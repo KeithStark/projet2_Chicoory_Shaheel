@@ -56,7 +56,7 @@ class Crud
 
         if (isset($data['id'])) {
             unset($data['id']);
-            $columns = implode(", ", array_keys($data));    
+            $columns = implode(", ", array_keys($data));
             $placeholders = ":" . implode(", :", array_keys($data));
         }
 

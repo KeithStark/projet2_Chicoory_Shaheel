@@ -27,8 +27,29 @@ class UserOrder extends Crud
 
     public function addUserOrder($userOrderData)
     {
-        return $this->add('user_order', $userOrderData);
+        $columns = implode(", ", array_keys($userOrderData));
+        $values = ":" . implode(", :", array_keys($userOrderData));
+
+        $sql = "INSERT INTO user_order ($columns) VALUES ($values)";
+        $stmt = $this->connexion->prepare($sql);
+
+        foreach ($userOrderData as $key => $value) {
+            $paramType = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue(":$key", $value, $paramType);
+        }
+
+        try {
+            if ($stmt->execute()) {
+                return $this->connexion->lastInsertId();
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            return false;
+        }
     }
+
 
     public function updateUserOrderById($id, $userOrderData)
     {
