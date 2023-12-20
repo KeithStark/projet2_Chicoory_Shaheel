@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="card-body">
                             <form method="post">
                                 <!--User Information Section-->
-                                <h5 class="mb-3" style="text-align: center;">Edit User Information</h5>
+                                <h5 class="mb-3" style="text-align: center;"><b>Edit User Information</b></h5>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -79,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" required>
+                                    <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
                                 </div>
 
                                 <!--Billing Address Section-->
-                                <h5 class="mb-3" style="text-align: center;">Edit Billing Address</h5>
+                                <h5 class="mb-3" style="text-align: center;"><b>Edit Billing Address</b></h5>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
 
                                 <!--Shipping Address Section-->
-                                <h5 class="mb-3" style="text-align: center;">Edit Shipping Address</h5>
+                                <h5 class="mb-3" style="text-align: center;"><b>Edit Shipping Address</b></h5>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">

@@ -53,24 +53,98 @@ if (isset($_POST['payer'])) {
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Billing Address</b></h5>
-                            <br>
-                            <p><?= $billingAddress['street_name'] ?>, <?= $billingAddress['street_nb'] ?></p>
-                            <p><?= $billingAddress['city'] ?>, <?= $billingAddress['province'] ?></p>
-                            <p><?= $billingAddress['zipcode'] ?></p>
-                            <p><?= $billingAddress['country'] ?></p>
+                            <h5 class="mb-3" style="text-align: center;"><b>Edit Billing Address</b></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_street_name" class="form-label">Street Name</label>
+                                        <input type="text" class="form-control" id="billing_street_name" name="billing_street_name" value="<?= $billingAddress['street_name']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_street_nb" class="form-label">Street Number</label>
+                                        <input type="text" class="form-control" id="billing_street_nb" name="billing_street_nb" value="<?= $billingAddress['street_nb']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="billing_city" name="billing_city" value="<?= $billingAddress['city']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_province" class="form-label">Province</label>
+                                        <input type="text" class="form-control" id="billing_province" name="billing_province" value="<?= $billingAddress['province']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_zipcode" class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="billing_zipcode" name="billing_zipcode" value="<?= $billingAddress['zipcode']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing_country" class="form-label">Country</label>
+                                        <input type="text" class="form-control" id="billing_country" name="billing_country" value="<?= $billingAddress['country']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Shipping Address</b></h5>
-                            <br>
-                            <p><?= $shippingAddress['street_name'] ?>, <?= $shippingAddress['street_nb'] ?></p>
-                            <p><?= $shippingAddress['city'] ?>, <?= $shippingAddress['province'] ?></p>
-                            <p><?= $shippingAddress['zipcode'] ?></p>
-                            <p><?= $shippingAddress['country'] ?></p>
+                            <h5 class="mb-3" style="text-align: center;"><b>Edit Shipping Address</b></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_street_name" class="form-label">Street Name</label>
+                                        <input type="text" class="form-control" id="shipping_street_name" name="shipping_street_name" value="<?= $shippingAddress['street_name']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_street_nb" class="form-label">Street Number</label>
+                                        <input type="text" class="form-control" id="shipping_street_nb" name="shipping_street_nb" value="<?= $shippingAddress['street_nb']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="shipping_city" name="shipping_city" value="<?= $shippingAddress['city']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_province" class="form-label">Province</label>
+                                        <input type="text" class="form-control" id="shipping_province" name="shipping_province" value="<?= $shippingAddress['province']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_zipcode" class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="shipping_zipcode" name="shipping_zipcode" value="<?= $shippingAddress['zipcode']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="shipping_country" class="form-label">Country</label>
+                                        <input type="text" class="form-control" id="shipping_country" name="shipping_country" value="<?= $shippingAddress['country']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
