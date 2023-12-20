@@ -162,3 +162,55 @@ h5 {
     background-color: #c82333;
     border-color: #bd2130;
 }
+
+/* General styling for the product container */
+.product-container {
+    padding: 20px 0;
+}
+
+/* Styling for individual product cards */
+.card {
+    width: 100%;
+    /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    border-radius: 10px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Ensures content stays within the border-radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Slight lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow on hover */
+}
+
+/* Styling for the card image */
+.card-img-top {
+    width: 100%;
+    /* Full width of the card */
+    height: 200px;
+    /* Fixed height, adjust as needed */
+    object-fit: cover;
+    /* Ensures the image covers the area nicely */
+}
+
+/* Styling for the card body */
+.card-body {
+    padding: 15px;
+}
+
+/* Centering the 'View Product' button */
+.card-body>center {
+    margin-top: 15px;
+    /* Adds some space above the button */
+}
+
+.btn-warning {
+    color: #fff;
+    /* Ensures text on the button is readable */
+}
