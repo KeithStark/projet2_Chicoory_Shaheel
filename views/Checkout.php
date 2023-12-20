@@ -23,7 +23,14 @@ $total = array_sum(array_map(function ($item) {
 
 if (isset($_POST['payer'])) {
     $orderController = new orderController();
-    $orderController->createOrder($user_id, $cartItems);
+    $result = $orderController->createOrder($user_id, $cartItems);
+
+    if (is_numeric($result)) {
+        $cartController->emptyCart();
+        header("Location: ./success.php");
+    } else {
+        echo "<p>Error: " . $result . "</p>";
+    }
 }
 ?>
 

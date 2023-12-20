@@ -27,10 +27,14 @@ class UserOrder extends Crud
 
     public function addUserOrder($userOrderData)
     {
-        $columns = implode(", ", array_keys($userOrderData));
-        $values = ":" . implode(", :", array_keys($userOrderData));
+        $nextIdStatement = $this->connexion->query("SELECT MAX(id) + 1 as next_id FROM user_order");
+        $nextId = $nextIdStatement->fetch(PDO::FETCH_ASSOC)['next_id'] ?? 1;
+        $nextId = $nextId ?: 1;
 
-        $sql = "INSERT INTO user_order ($columns) VALUES ($values)";
+        $userOrderData['id'] = $nextId;
+        $columns = implode(", ", array_keys($userOrderData));
+        $placeholders = ":" . implode(", :", array_keys($userOrderData));
+        $sql = "INSERT INTO user_order ($columns) VALUES ($placeholders)";
         $stmt = $this->connexion->prepare($sql);
 
         foreach ($userOrderData as $key => $value) {
@@ -40,15 +44,16 @@ class UserOrder extends Crud
 
         try {
             if ($stmt->execute()) {
-                return $this->connexion->lastInsertId();
+                return $nextId;
             } else {
                 return false;
             }
         } catch (PDOException $e) {
-            error_log($e->getMessage());
+            error_log("Error in addUserOrder: " . $e->getMessage());
             return false;
         }
     }
+
 
 
     public function updateUserOrderById($id, $userOrderData)
