@@ -55,7 +55,7 @@ $cartQuantity = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="manageCommands.php"><i class="bi bi-box"></i> Orders</a></li>
+                                <li><a class="dropdown-item" href="Orders.php"><i class="bi bi-box"></i> Orders</a></li>
                             </ul>
                         </li>
                     <?php
