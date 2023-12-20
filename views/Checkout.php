@@ -14,6 +14,7 @@ $addressModel = new Address();
 
 $discountController = new DiscountController();
 $discountApplied = false;
+$discountAmount = 0;
 
 $user_id = SessionManager::getSessionData('user_id');
 $user = $userModel->getUserById($user_id);
@@ -39,7 +40,9 @@ if (isset($_POST['payer'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyDiscount'])) {
     $discountCode = $_POST['discountCode'];
+    $originalTotal = $total;
     $total = $discountController->applyDiscount($discountCode, $total);
+    $discountAmount = $originalTotal - $total;
     $discountApplied = true;
 }
 ?>
@@ -167,17 +170,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyDiscount'])) {
                             <!-- Add the discount code field here -->
                             <div class="mb-3">
                                 <form action="Checkout.php" method="post">
-                                    <label for="discountCode" class="form-label" style="color: red;">Discount Code</label>
+                                    <label for="discountCode" class="form-label">Discount Code</label>
                                     <div class="row">
                                         <div class="col-sm-8 col-md-6 col-lg-4">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="discountCode" name="discountCode" placeholder="Enter code (optional)">
-                                                <button type="submit" name="applyDiscount" class="btn btn-primary" style="margin-left: 5%;">Apply</button>
+                                                <button type="submit" name="applyDiscount" class="btn btn-primary" style="margin-left: 5%;" ?=$discountApplied ? 'disabled' : '' ?>Apply</button>
                                             </div>
                                         </div>
                                     </div>
                                     <?php if ($discountApplied) : ?>
-                                        <small class="text-success" style="color: blue;"><b>Discount applied!</b></small>
+                                        <small class="text-success">Discount applied!</small>
                                     <?php endif; ?>
                                 </form>
                             </div>
@@ -190,8 +193,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyDiscount'])) {
                                     </li>
                                 <?php } ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b>Discount Amount :</b>
+                                    <span class="badge bg-primary rounded-pill">$<?= number_format($discountAmount, 2) ?></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <b>Total :</b>
-                                    <span class="badge bg-primary rounded-pill">$<?= $total ?></span>
+                                    <span class="badge bg-primary rounded-pill">$<?= number_format($total, 2) ?></span>
                                 </li>
                             </ul>
                         </div>
